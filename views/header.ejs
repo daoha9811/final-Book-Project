@@ -10,15 +10,12 @@
     <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
 
     <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="icon" href="https://cdn.glitch.com/b78e473a-663b-4f3f-8acc-bec9c7b819e7%2Fwallpaper-4k-hinh-nen-4k-chiec-thuyen-nho-trong-eo-bien-xanh_101304948.jpg?v=1587733215566" type="image/gif" sizes="16x16">
-    <link rel="stylesheet" href="/styles/style.css">
-    <!-- import the webpage's client-side javascript file -->
-    <script src="/script.js" defer></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" ></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/BookIndex.css">
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" rel="stylesheet">
+     <script src="./js/bootstrap.min.js"></script>
+     <script src="./js/jquery.js"></script>
+    <title>BookStore</title>
   </head>
   <style>
     .table td {
@@ -26,23 +23,57 @@
     }
   </style>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link active" href="/books">Books <span class="sr-only">(current)</span></a>
-          <a class="nav-item nav-link" href="/users">Users</a>
-          <a class="nav-item nav-link" href="/transactions">Transactions</a>
-          <a class="nav-item nav-link" href="/carts">Cart(<%if(typeof count != "undefined") {%> 
+    <header>
+      <div class="menu">
+        <div class="Logo">
+          <img src="https://dummyimage.com/200x80/000/fff">
+        </div>
+        <div class="Home">
+          <a href="#">Home</a>
+        </div>
+        <div class="Product">
+          <a href="#">Product</a>
+        </div>
+        <div class="Contact">
+          <a href="#">Contact</a>
+        </div>
+        <div class="Blog">
+          <a href="#">Blog</a>
+        </div>
+      </div>
+      <div class="responsiveMenu">
+        <div class="responsiveLogo">
+          <img src="https://dummyimage.com/100x50/000/fff">
+        </div>
+        <div class="toggleButton">
+          <i class="fas fa-align-justify fa-3x"></i>
+        </div>
+      </div>
+      <div class="resMenu">
+        <i class="fas fa-times fa-2x removeResMenu"></i>
+        <ul>
+          <li> 
+            <a class="nav-item nav-link active" href="/books">Books <span class="sr-only">(current)</span></a>
+          </li>
+           <li>
+             <a class="nav-item nav-link" href="/users">Users</a>
+          </li>
+          <li>
+            <a class="nav-item nav-link" href="/transactions">Transactions</a>
+          </li>
+          <li>  
+            <a class="nav-item nav-link" href="/carts">Cart(<%if(typeof count != "undefined") {%> 
                   <%-count %>
               <%}else { %>
                     0
-                <% } %>)</a>
-          <a class="nav-item nav-link" href="/logout">Logout</a>
-        </div>
+                <% } %>)
+            </a> 
+          </li>
+          <li>
+            <a class="nav-item nav-link" href="/logout">Logout</a>
+          </li>
+          </ul>
       </div>
-    </nav>
+    </header>
+   
     
