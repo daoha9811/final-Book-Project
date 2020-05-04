@@ -51,7 +51,6 @@ module.exports.get = async (req, res) => {
 module.exports.getSearch = async (req, res) => {
   let q = req.query.q || "";
   let filterData = await User.find({ name: new RegExp(q, "i") });
-  console.log(filterData);
   let currentPage = parseInt(req.query.pages) || 1;
   let perpage = 3;
   let pages = Math.ceil(filterData.length / perpage);

@@ -33,7 +33,6 @@ module.exports.postLogin = async (req, res) => {
   //logic xu ly exchange du lieu giua guest va user
   if (guestSSID && guestSSID != id) {
     //exchange du lieu
-    console.log(guestSSID);
     let guestSessions = await Session.findById(guestSSID);
     let userSessions = await Session.findById(id);
 
@@ -46,7 +45,6 @@ module.exports.postLogin = async (req, res) => {
         }
       }
     }
-    console.log('a');
     //write lai trong db
     Session.update({ _id: id }, { $set: { carts: userSessions["carts"] } });
   }

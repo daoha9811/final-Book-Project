@@ -73,8 +73,6 @@ module.exports.getAddToCart = async (req, res) => {
   const count = _.get(sessionCurrent, `carts.${bookId}`, 0);
   const setObj = _.set( sessionCurrent , `carts.${bookId}`, count + 1)
   
-  console.log(setObj);
-  
   await Session.update({ _id: sessionId }, { $set: setObj })
   
   res.redirect("/books");
@@ -86,7 +84,6 @@ module.exports.getDelete = async (req, res) => {
   const currentSession = await Session.findById(sessionId);
   const carts = currentSession.carts || {}
   delete carts[bookId];
-  console.log(carts);
   await Session.updateOne({ _id: sessionId }, { $set: { carts } });
   res.redirect("back");
 };
