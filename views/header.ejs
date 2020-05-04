@@ -10,12 +10,12 @@
     <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
 
     <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" type="text/css" href="./css/BookIndex.css">
-    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" rel="stylesheet">
-     <script src="./js/bootstrap.min.js"></script>
-     <script src="./js/jquery.js"></script>
-    <title>BookStore</title>
+    <link rel="stylesheet" type="text/css" href="/bookStores/css/BookIndex.css">
+    <link rel="stylesheet" type="text/css" href="/bookStores/bootstrap.min.css"> <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" rel="stylesheet">
+     <script src="/bookStores/js/bootstrap.min.js"></script>
+     <script src="/bookStores/js/jquery.js"></script>
+     <script defer src="/bookStores/js/BookIndex.js"></script>
+     <title>BookStore</title>
   </head>
   <style>
     .table td {
@@ -29,16 +29,24 @@
           <img src="https://dummyimage.com/200x80/000/fff">
         </div>
         <div class="Home">
-          <a href="#">Home</a>
+          <a class="nav-item nav-link active" href="/books">Books <span class="sr-only">(current)</span></a>
         </div>
         <div class="Product">
-          <a href="#">Product</a>
+          <a class="nav-item nav-link" href="/users">Users</a>
         </div>
         <div class="Contact">
-          <a href="#">Contact</a>
+          <a class="nav-item nav-link" href="/transactions">Transactions</a>
         </div>
         <div class="Blog">
-          <a href="#">Blog</a>
+          <a class="nav-item nav-link" href="/carts">Cart(<%if(typeof count != "undefined") {%> 
+              <%-count %>
+            <%}else { %>
+                  0
+              <% } %>)
+          </a> 
+        </div>
+        <div class="Logout">
+          <a class="nav-item nav-link" href="/logout">Logout</a> 
         </div>
       </div>
       <div class="responsiveMenu">

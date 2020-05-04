@@ -13,13 +13,6 @@ let loginFail = [];
 let db = require(root + "/db.model.js");
 
 module.exports.checkLogin = async (req, res, next) => {
-   try {
-     var a;
-     a.b();
-   } catch (error) {
-     next(error)
-   }
-  
   const gmail = req.body.gmail;
   const password = req.body.password;
   let Errors = [];

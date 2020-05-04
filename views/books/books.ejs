@@ -1,11 +1,15 @@
 <%- include('./../header') ;%>
-    <header>
-      <h1>Books</h1>
-    </header>
     <main>
-      <div style="display:flex; justify-content: space-between; align-items: center">
+      <div class= "image-container">
+        <div class="getStarted">
+          <a href="#">Get Started</a>
+        </div>
+      </div>
+      <div style="display:flex; justify-content: space-between; align-items: center; margin-top:30px;">
         <%if(isAdmin) {%>
-           <a class="btn btn-primary" href="/books/create">New</a>
+           <a style="margin-left:20px;" class="btn btn-primary" href="/books/create">New</a>
+        <% } else { %>
+          <div></div>
         <% } %>
          <form method="GET" action="/books/search"  style="width:50%">
            <div class="form-group">
@@ -18,7 +22,7 @@
       <div style="margin-top: 30px; display: flex; align-items: center;justify-content: center; flex-direction: column">
         <div class="container">
           <%for(let i = 0; i < data.length; i+=3) {%>
-            <div class="row">
+            <div class="row" style="margin-top:30px;">
               <%for(let j = i; j < data.slice(0, i+3).length; j++) { %>
                 <div class="col-md-4 col-lg-4 col-sm-6">
                     <div class="card" style="width: 18rem;">
