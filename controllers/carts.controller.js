@@ -61,7 +61,8 @@ module.exports.getCart = async (req, res) => {
     currentPage,
     next,
     previous,
-    count
+    count,
+    sessionId
   });
 };
 
