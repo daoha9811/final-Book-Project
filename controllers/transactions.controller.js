@@ -16,7 +16,7 @@ module.exports.get = async (req, res) => {
   const token = req.signedCookies.token;
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   let trans = await axios.get(
-    "https://ablaze-peppermint-parka.glitch.me/api/transaction"
+    `${process.env.WEB_URL}/api/transaction`
   );
 
   let userId = req.signedCookies.userId;

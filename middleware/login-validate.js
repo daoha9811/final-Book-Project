@@ -37,7 +37,7 @@ module.exports.checkLogin = async (req, res, next) => {
       gmail,
       password
     }
-    let responseAuthen = await axios.post('https://ablaze-peppermint-parka.glitch.me/api/login', payload)
+    let responseAuthen = await axios.post(`${process.env.WEB_URL}/api/login`, payload)
     if (responseAuthen.data.Error) {
       Errors.push("Fail to login");
       ++wrongLoginCount;
