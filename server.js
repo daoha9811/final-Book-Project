@@ -39,6 +39,7 @@ const transactionsRouter = require("./routes/transactions.routes");
 const loginRouter = require("./routes/login.routes");
 const cartRouter = require("./routes/cart.routes");
 const apiRouter = require("./api/routes/api");
+const registerRouter = require("./routes/create.routes");
 
 const loginMiddleware = require("./middleware/login-validate");
 const sessionMiddleware = require("./middleware/sessionId");
@@ -85,6 +86,9 @@ app.use("/books", booksRouter);
 
 //users router
 app.use("/users", loginMiddleware.isLogin, usersRouter);
+
+//
+app.use("/register", registerRouter);
 
 //transactions router
 app.use("/transactions", loginMiddleware.isLogin, transactionsRouter);

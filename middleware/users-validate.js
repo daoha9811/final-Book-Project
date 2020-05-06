@@ -8,8 +8,8 @@ const Session = require(root + "/models/sessions-model");
 const Transaction = require(root + "/models/transactions-model");
 
 module.exports.check = async (req, res, next) => {
-  let userName = req.body.name;
-  let userGmail = req.body.gmail;
+  let userName = req.body.name || "";
+  let userGmail = req.body.gmail || "";
   let errors = [];
 
   if (userName.length >= 30) {
@@ -17,10 +17,8 @@ module.exports.check = async (req, res, next) => {
     res.render("users/user-create", { Errors: errors });
     return;
   }
-
-  if (
-    await User.find({ gmail: userGmail })
-  ) {
+  const checkedUser = await User.find({ gmail: userGmail });
+  if (checkedUser.length > 0) {
     errors.push("Gmail da duoc dang ky");
     res.render("users/user-create", { Errors: errors });
     return;
