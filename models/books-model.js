@@ -13,6 +13,10 @@ const bookSchema = new Schema({
     type: String,
     default:
       "https://res.cloudinary.com/daoha/image/upload/v1588146078/userTest/download_btdqvy.jpg"
+  },
+  shopId: {
+    type: Schema.Types.ObjectId,
+    default: "5ead433133eb251ac64fbe41"
   }
 });
 

@@ -1,0 +1,44 @@
+<%- include('./../header') ;%>
+    <header>
+      <h1>Quan ly sach</h1>
+    </header>
+
+    <main>
+      <div style="display:flex; justify-content: space-between; align-items: center">
+        <% if(typeof shop!= "undefined") { %>
+          <p style="font-size: 30px;color:palevioletred; font-weight: 1000;">
+            <%- shop.shopName %>
+          </p>
+          <a style="margin-left:20px;" class="btn btn-primary" href="/books/create">New</a>
+        <% } %>
+      </div>
+      <div style="margin-top: 30px; display: flex; align-items: center;justify-content: center; flex-direction: column">
+        <table class="table" style="width:70%; text-align:center">
+          <thead>
+            <tr>
+              <th scope="col">Avatar</th>
+              <th scope="col">Title</th>
+              <th scope="col">Handle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%if(typeof books != "undefined" && books.length > 0) {%>
+              <%for(let i of books) {%>
+                <tr>
+                  <td><img src="<%- i.bookCoverUrl%>" style="width: 80px; height: 80px; border-radius: 50%"/></td>
+                  <td><%- i.bookName %></td>
+                  <td>
+                    <a class="btn btn-secondary" href="/books/<%- i.bid%>/delete">xoa</a>
+                    <a class="btn btn-secondary" href="/books/<%- i.bid%>/update">update</a>
+                  </td>
+                </tr>  
+                <% } %>
+              <% } %>
+          </tbody>
+        </table>
+
+      
+      </div>
+    </main>
+  </body>
+</html>

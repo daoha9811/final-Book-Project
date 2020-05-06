@@ -40,6 +40,7 @@ const loginRouter = require("./routes/login.routes");
 const cartRouter = require("./routes/cart.routes");
 const apiRouter = require("./api/routes/api");
 const registerRouter = require("./routes/create.routes");
+const shopsRouter = require("./routes/shops.routes");
 
 const loginMiddleware = require("./middleware/login-validate");
 const sessionMiddleware = require("./middleware/sessionId");
@@ -92,6 +93,9 @@ app.use("/register", registerRouter);
 
 //transactions router
 app.use("/transactions", loginMiddleware.isLogin, transactionsRouter);
+
+//shops
+app.use("/shops", loginMiddleware.isLogin, shopsRouter);
 
 //cart router
 app.use("/carts", cartRouter);

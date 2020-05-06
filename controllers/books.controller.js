@@ -13,6 +13,8 @@ cloudinary.config({
 const User = require(root + "/models/users-model");
 const Book = require(root + "/models/books-model");
 const Session = require(root + "/models/sessions-model");
+const Shops = require(root + "/models/shops-model");
+
 let db = require(root + "/db.model.js");
 
 module.exports.get = async (req, res) => {
@@ -97,14 +99,26 @@ module.exports.getCreate = (req, res) => {
 
 module.exports.postCreate = async (req, res) => {
   let { title, description } = req.body;
+  const shopId = req.signedCookies.shopId || "";
   if (!req.file) {
     if (title) {
       await Book.create({
         title,
         description,
         coverUrl:
-          "https://res.cloudinary.com/daoha/image/upload/v1588146078/userTest/download_btdqvy.jpg"
-      }).write();
+          "https://res.cloudinary.com/daoha/image/upload/v1588146078/userTest/download_btdqvy.jpg",
+        shopId
+      },
+      async (err, data)=>{
+          if(shopId) {
+            const shop = await Shops.findById(shopId);
+            let books = shop.bookId;
+            books.push(data.id);
+            console.log(books);
+            await Shops.update({ _id: shopId }, { $set: { bookId: books } })
+          }
+        }
+      )
     }
   } else {
     const id = mongoose.Types.ObjectId();
@@ -116,7 +130,22 @@ module.exports.postCreate = async (req, res) => {
         if (err) {
           console.warn(err);
         }
-        await Book.create({ id: id, title, description, coverUrl: result.url });
+        await Book.create({ 
+            id: id, 
+            title, 
+            description, 
+            coverUrl: result.url, 
+            shopId 
+          }, async (err, data)=>{
+            if(shopId) {
+              const shop = await Shops.findById(shopId);
+              let books = shop.bookId;
+              books.push(data.id);
+              console.log(books);
+              await Shops.update({ _id: shopId }, { $set: { bookId: books } })
+            }
+          }
+        );
       }
     );
   }
@@ -125,7 +154,17 @@ module.exports.postCreate = async (req, res) => {
 
 module.exports.getDelete = async (req, res) => {
   let params = req.params.id;
+  const currentBook  = await Book.findById(params);
+  const shopId = currentBook.shopId;
+  const currentShop = await Shops.findById(shopId);
+
+  let books = currentShop.bookId;
+  const newBooks = books.filter(b => {
+    return b != params;
+  });
+  await Shops.update({ _id: shopId }, { $set: { bookId: newBooks } });
   await Book.deleteOne({ _id: params });
+  
   res.redirect("back");
 };
 

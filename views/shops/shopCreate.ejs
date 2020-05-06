@@ -1,0 +1,32 @@
+<%- include('./../header') ;%>
+    <header>
+      <h1>Users</h1>
+    </header>
+
+    <main>
+      <h3 style="margin-top: 40px">
+        Tao 1 shop
+      </h3>
+      
+     <% if(typeof Errors != "undefined") { %>
+        <% if(Errors.length > 0) { %>
+            <%for(let i of Errors) { %>
+                <div class="alert alert-danger" role="alert">
+                <%- i %>
+                </div>
+            <% } %>
+        <% } %>
+    <% } %>
+      
+      <form method="POST" >
+         <div class="form-group">
+            <label for="exampleInputEmail1">Ten shop</label>
+            <input style="width: 50%;" type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+      </form>
+    </main>
+
+    <script src="https://button.glitch.me/button.js"></script>
+  </body>
+</html>
